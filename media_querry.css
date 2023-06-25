@@ -40,11 +40,12 @@
 .intro h2{
    text-align: center;
    width: 70%;
+   margin-top: 30px;
 }
 
 .about-container{
    width: 100%;
-   margin-top: 35px;
+   margin-top: 50px;
    margin-left: 52px;
 }
 .pic img{
@@ -54,6 +55,7 @@
 .card{
    width: 300px;
    margin-left: 8px;
+   margin-top: 20px;
 }
 
 .card ul{
@@ -61,7 +63,7 @@
 }
 
 .card ul li {
-   font-size: medium;
+   font-size: small;
 }
 
 h2,h3{
@@ -74,6 +76,6 @@ h2,h3{
 
 /* section 3 */
 #Third-section{
-   margin-top:50px;
+   margin-top:100px;
 }
 }
