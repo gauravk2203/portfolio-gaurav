@@ -40,7 +40,7 @@
 .intro h2{
    text-align: center;
    width: 70%;
-   margin-top: 30px;
+   margin-top: 50px;
 }
 
 .about-container{
@@ -76,6 +76,6 @@ h2,h3{
 
 /* section 3 */
 #Third-section{
-   margin-top:100px;
+   margin-top:120px;
 }
 }
