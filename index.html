@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gauravk2205's portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Animation.css">
+    <link rel="stylesheet" href="media_querry.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Animation.css">
 </head>
 <body>
 <!-- Background-animation -->
@@ -39,6 +40,17 @@
                 <li><a href="#Third-section">Projects</a></li>
                 <li><a href="#Fourth-section">Contact</a></li>
             </ul>
+            </div>
+            <div id="menu-container">
+                <span id="hambergurmenu" class="material-symbols-outlined"> menu</span>
+                <div id="dropdown-menu">
+                    <ul>
+                    <li><a href="#first-section">Home</a></li>
+                    <li><a href="#Second-section">About</a></li>
+                    <li><a href="#Third-section">Projects</a></li>
+                    <li><a href="#Fourth-section">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
 </header>
@@ -150,9 +162,28 @@
  
 
 <script>
+
+    // flip card
     function flipCard(card) {
       card.classList.toggle('flipped');
     }
+
+    // hambergur menu
+    let handleclicked=()=>{
+            if (dropdown.style.display === "block"){
+                dropdown.style.display = "none";
+            } 
+            else{
+                 dropdown.style.display = "block";
+                }
+        }
+
+        let dropdown = document.getElementById("dropdown-menu");
+        dropdown.style.display="none";
+
+        let menu = document.getElementById("hambergurmenu");
+        menu.addEventListener("click",handleclicked);
+
 </script>
 </body>
 </html>

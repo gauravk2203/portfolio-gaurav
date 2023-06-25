@@ -1,5 +1,27 @@
-/* @media screen and(min-width:480px) {
-   .my-intro{
-       
-   } 
-} */
+/* Media querry for mobile screens */
+@media (max-width:425px) {
+   #menu-container{
+      display: block;
+   }
+   .right-side{
+      display: none;
+   }
+   nav{
+      width: 50%;
+   }
+   .left-side{
+      font-size: 20px;
+   }
+   
+/* section 1 */
+   .big{
+      font-size: 40px!important;
+   }
+   #para{
+      width: 80%;
+   }
+   #greetings{
+      width: 40%;
+   }
+   
+}
