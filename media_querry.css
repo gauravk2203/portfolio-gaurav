@@ -23,5 +23,57 @@
    #greetings{
       width: 40%;
    }
-   
+   .box{
+      font-size: medium;
+   }
+   #my-name{
+      letter-spacing: 15px;
+   }
+
+/* section 2 */
+.container{
+   margin-top:40px;
+   display: flex;
+   flex-direction: column;
+}
+
+.intro h2{
+   text-align: center;
+   width: 70%;
+}
+
+.about-container{
+   width: 100%;
+   margin-top: 35px;
+   margin-left: 52px;
+}
+.pic img{
+   width: 150px;
+   height: 150px;
+}
+.card{
+   width: 300px;
+   margin-left: 8px;
+}
+
+.card ul{
+   padding: 18px;
+}
+
+.card ul li {
+   font-size: medium;
+}
+
+h2,h3{
+   margin: 12px 23px;
+}
+.intro p{
+   margin: 10px;
+   width: 300px;
+}
+
+/* section 3 */
+#Third-section{
+   margin-top:50px;
+}
 }
