@@ -1,81 +1,9 @@
 /* Media querry for mobile screens */
-@media (max-width:425px) {
-   #menu-container{
-      display: block;
-   }
-   .right-side{
-      display: none;
-   }
-   nav{
-      width: 50%;
-   }
-   .left-side{
-      font-size: 20px;
-   }
-   
-/* section 1 */
-   .big{
-      font-size: 40px!important;
-   }
-   #para{
-      width: 80%;
-   }
-   #greetings{
-      width: 40%;
-   }
-   .box{
-      font-size: medium;
-   }
-   #my-name{
-      letter-spacing: 15px;
-   }
-
-/* section 2 */
-.container{
-   margin-top:40px;
-   display: flex;
-   flex-direction: column;
-}
-
-.intro h2{
-   text-align: center;
-   width: 70%;
-   margin-top: 50px;
-}
-
-.about-container{
-   width: 100%;
-   margin-top: 50px;
-   margin-left: 52px;
-}
-.pic img{
-   width: 150px;
-   height: 150px;
-}
-.card{
-   width: 300px;
-   margin-left: 8px;
-   margin-top: 20px;
-}
-
-.card ul{
-   padding: 18px;
-}
-
-.card ul li {
-   font-size: small;
-}
-
-h2,h3{
-   margin: 12px 23px;
-}
-.intro p{
-   margin: 10px;
-   width: 300px;
-}
-
-/* section 3 */
-#Third-section{
-   margin-top:120px;
-}
+@media (max-width:768px) {
+    #menu-container{
+        display: block;
+    }
+    .right-side{
+        display: none;
+    }
 }

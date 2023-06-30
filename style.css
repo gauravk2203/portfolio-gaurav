@@ -254,6 +254,7 @@ backface-visibility: hidden;
 backdrop-filter: blur(30px);
 background: linear-gradient(45deg, rgb(245 245 245 / 40%), rgb(245 245 245 / 10%));
 border-radius: 20px;
+padding: 20px;
 }
 
 .card-back {
@@ -261,6 +262,7 @@ backdrop-filter: blur(30px);
 background: linear-gradient(45deg, rgb(245 245 245 / 40%), rgb(245 245 245 / 10%));
 border-radius: 20px;
 transform: rotateY(180deg);
+padding: 20px;
 }
 
 /* section 3 */
