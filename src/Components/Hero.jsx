@@ -75,7 +75,7 @@ export const Hero = () => {
             Let’s Talk
           </a>
           <a
-            href="../Gaurav_Kadam_FullStack_Developer_resume.pdf"
+            href="../Kadam_Gaurav.pdf"
             target="_blank"
             rel="noopener noreferrer"
             download
