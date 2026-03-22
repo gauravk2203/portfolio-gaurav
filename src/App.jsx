@@ -1,16 +1,27 @@
-import { Hero } from './Components/Hero';
-import { About } from './Components/About.jsx';
-import { Projects } from './Components/Projects.jsx';
-import { Contact } from './Components/Contact.jsx';
+import React from 'react';
+import Nav from './components/layout/Nav';
+import Footer from './components/layout/Footer';
+import Hero from './components/sections/Hero';
+import Showcase from './components/sections/Showcase';
+import Work from './components/sections/Work';
+import Blog from './components/sections/Blog';
+import About from './components/sections/About';
+import Contact from './components/sections/Contact';
 
 function App() {
   return (
-    <main className="bg-white text-gray-900 font-sans overflow-x-hidden">
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
-    </main>
+    <div className="min-h-screen flex flex-col">
+      <Nav />
+      <main className="flex-1">
+        <Hero />
+        <Showcase />
+        <Work />
+        <Blog />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

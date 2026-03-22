@@ -1,0 +1,38 @@
+export const projects = [
+  {
+    id: 'project-01',
+    number: '01',
+    title: 'Tracker (Ongoing)',
+    type: 'Web App',
+    year: '2025',
+    description: 'A full-stack platform for habit, task, and routine tracking with analytics-driven insights.',
+    impact: 'Active Development',
+    stack: ['React', 'TypeScript', 'Redux'],
+    url: 'https://github.com/gauravk2203',
+    image: 'https://placehold.co/1200x800/111111/E8D5B0?text=Tracker',
+  },
+  {
+    id: 'project-02',
+    number: '02',
+    title: 'Blockchain Verification',
+    type: 'Web App',
+    year: '2024',
+    description: 'A decentralized verification system ensuring tamper-proof document authenticity using smart contracts and IPFS.',
+    impact: 'Improved speed by 40%',
+    stack: ['MERN', 'Solidity', 'IPFS', 'JWT'],
+    url: 'https://github.com/gauravk2203',
+    image: 'https://placehold.co/1200x800/111111/E8D5B0?text=Verify+',
+  },
+  {
+    id: 'project-03',
+    number: '03',
+    title: 'Pharmacy Management',
+    type: 'Web App',
+    year: '2023',
+    description: 'A real-time platform with automated workflows to improve the reliability of pharmacy operations.',
+    impact: 'Reduced manual errors',
+    stack: ['React', 'Node.js', 'REST APIs'],
+    url: 'https://github.com/gauravk2203',
+    image: 'https://placehold.co/1200x800/111111/E8D5B0?text=PharmaSys',
+  }
+];
