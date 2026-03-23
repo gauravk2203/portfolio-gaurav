@@ -15,7 +15,7 @@ export default function Work() {
   }, [filter]);
 
   return (
-    <section id="work" className="py-32 bg-bg border-t border-border">
+    <section id="work" className="py-16 md:py-24 lg:py-32 bg-bg border-t border-border">
       <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-24">
         <ScrollReveal delay={0}>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 mt-2">

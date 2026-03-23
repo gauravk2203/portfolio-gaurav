@@ -4,7 +4,7 @@ import ScrollReveal from '../ui/ScrollReveal';
 
 export default function About() {
   return (
-    <section id="about" className="py-32 bg-bg border-t border-border">
+    <section id="about" className="py-16 md:py-24 lg:py-32 bg-bg border-t border-border">
       <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-24">
         <ScrollReveal delay={0}>
           <SectionLabel label="ABOUT ME" />

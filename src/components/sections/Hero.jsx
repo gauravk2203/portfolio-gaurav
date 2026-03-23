@@ -4,7 +4,7 @@ import ScrollReveal from '../ui/ScrollReveal';
 
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-screen flex items-center pt-32 pb-32 px-6 md:px-12 lg:px-16 xl:px-24">
+    <section id="hero" className="min-h-screen flex items-center pt-32 pb-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-16 xl:px-24">
       <div className="max-w-[1600px] mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-0 items-center">
           

@@ -68,7 +68,7 @@ export default function Showcase() {
   ];
 
   return (
-    <section id="components" className="py-32 bg-bg border-t border-border">
+    <section id="components" className="py-16 md:py-24 lg:py-32 bg-bg border-t border-border">
       <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-24">
         <ScrollReveal delay={0}>
           <SectionLabel label="COMPONENT LIBRARY" />

@@ -12,10 +12,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 bg-surface border-t border-border">
+    <section id="contact" className="py-16 md:py-24 lg:py-32 bg-surface border-t border-border">
       <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-24 text-center">
         <ScrollReveal delay={0}>
-          <h2 className="font-serif text-h1 md:text-display text-primary mb-6">Let's build something.</h2>
+          <h2 className="font-serif text-[2.5rem] md:text-h1 lg:text-display text-primary mb-6">Let's build something.</h2>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <p className="font-mono text-body text-secondary max-w-xl mx-auto mb-16">
