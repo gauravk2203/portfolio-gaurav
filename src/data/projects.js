@@ -8,7 +8,7 @@ export const projects = [
     description: 'A full-stack platform for habit, task, and routine tracking with analytics-driven insights.',
     impact: 'Active Development',
     stack: ['React', 'TypeScript', 'Redux'],
-    url: 'https://github.com/gauravk2203',
+    url: 'https://github.com/rj25031/habit-tracker',
     image: 'https://placehold.co/1200x800/111111/E8D5B0?text=Tracker',
   },
   {
@@ -20,7 +20,7 @@ export const projects = [
     description: 'A decentralized verification system ensuring tamper-proof document authenticity using smart contracts and IPFS.',
     impact: 'Improved speed by 40%',
     stack: ['MERN', 'Solidity', 'IPFS', 'JWT'],
-    url: 'https://github.com/gauravk2203',
+    url: 'https://github.com/gauravk2203/Document-Verification-Using-Blockchain',
     image: 'https://placehold.co/1200x800/111111/E8D5B0?text=Verify+',
   },
   {
@@ -32,7 +32,7 @@ export const projects = [
     description: 'A real-time platform with automated workflows to improve the reliability of pharmacy operations.',
     impact: 'Reduced manual errors',
     stack: ['React', 'Node.js', 'REST APIs'],
-    url: 'https://github.com/gauravk2203',
+    url: 'https://github.com/gauravk2203/PharmacyManagement',
     image: 'https://placehold.co/1200x800/111111/E8D5B0?text=PharmaSys',
   }
 ];
