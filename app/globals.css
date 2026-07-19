@@ -1,0 +1,351 @@
+@import "tailwindcss";
+
+/* ─── Obsidian Ledger design tokens ─── */
+:root {
+  --void: #050507;
+  --surface-0: #0a0b0e;
+  --surface-1: #101218;
+  --surface-2: #171a22;
+  --surface-3: #1e222c;
+
+  --border-subtle: rgba(244, 241, 234, 0.06);
+  --border-default: rgba(244, 241, 234, 0.1);
+  --border-strong: rgba(244, 241, 234, 0.18);
+
+  --text-primary: #f4f1ea;
+  --text-secondary: #a8a59c;
+  --text-muted: #6f6d66;
+  --text-inverse: #0a0b0e;
+
+  --accent: #d4a574;
+  --accent-hover: #e0b78a;
+  --accent-muted: rgba(212, 165, 116, 0.14);
+  --accent-glow: rgba(212, 165, 116, 0.35);
+
+  --secondary: #7a9ead;
+  --secondary-muted: rgba(122, 158, 173, 0.14);
+
+  --success: #5faf82;
+  --warning: #d4a24c;
+  --danger: #c75c5c;
+  --info: #6b9bc3;
+
+  --overlay: rgba(5, 5, 7, 0.72);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.55);
+  --glow-accent: 0 0 40px var(--accent-glow);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-height: 4.5rem;
+  --noise-opacity: 0.035;
+
+  --background: var(--void);
+  --foreground: var(--text-primary);
+  --theme-transition: background-color 300ms var(--ease-out-expo),
+    color 300ms var(--ease-out-expo), border-color 300ms var(--ease-out-expo);
+}
+
+/* Light mode — warm paper ledger */
+html.light {
+  color-scheme: light;
+  --void: #f7f4ee;
+  --surface-0: #f0ebe3;
+  --surface-1: #ffffff;
+  --surface-2: #e9e3d9;
+  --surface-3: #ddd5c8;
+
+  --border-subtle: rgba(22, 21, 26, 0.06);
+  --border-default: rgba(22, 21, 26, 0.1);
+  --border-strong: rgba(22, 21, 26, 0.18);
+
+  --text-primary: #16151a;
+  --text-secondary: #5c5a55;
+  --text-muted: #8a8780;
+  --text-inverse: #f7f4ee;
+
+  --accent: #b8844f;
+  --accent-hover: #9e6f3f;
+  --accent-muted: rgba(184, 132, 79, 0.14);
+  --accent-glow: rgba(184, 132, 79, 0.28);
+
+  --secondary: #4d7382;
+  --secondary-muted: rgba(77, 115, 130, 0.12);
+
+  --success: #3d8f62;
+  --warning: #b8862e;
+  --danger: #b54545;
+  --info: #4a7fa3;
+
+  --overlay: rgba(247, 244, 238, 0.78);
+  --shadow-sm: 0 1px 2px rgba(22, 21, 26, 0.06);
+  --shadow-md: 0 8px 24px rgba(22, 21, 26, 0.08);
+  --shadow-lg: 0 24px 64px rgba(22, 21, 26, 0.12);
+  --noise-opacity: 0.02;
+  --background: var(--void);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-muted: var(--accent-muted);
+  --color-secondary: var(--secondary);
+  --color-secondary-muted: var(--secondary-muted);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-overlay: var(--overlay);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+/* ─── Base ─── */
+*,
+*::before,
+*::after {
+  border-color: var(--border-default);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Nested scroll regions (command palette, etc.) */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+html.theme-ready body,
+html.theme-ready body * {
+  transition: var(--theme-transition);
+}
+
+/* Avoid transitioning layout-heavy props on every element forever */
+html.theme-ready img,
+html.theme-ready svg,
+html.theme-ready video,
+html.theme-ready canvas {
+  transition: none;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--accent-muted);
+  color: var(--text-primary);
+}
+
+/* Noise texture overlay */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px;
+  mix-blend-mode: overlay;
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Typography utilities */
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html.light body::before {
+  mix-blend-mode: multiply;
+  opacity: 0.025;
+}
+
+/* Prose for case studies */
+.prose-ledger {
+  max-width: 42rem;
+  color: var(--text-secondary);
+}
+
+.prose-ledger h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.prose-ledger h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-ledger p {
+  margin-bottom: 1.1rem;
+}
+
+.prose-ledger ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+
+.prose-ledger li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-ledger li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.prose-ledger code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--secondary);
+  background: var(--secondary-muted);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.prose-ledger pre {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  background: var(--surface-1);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+}
+
+/* Print (resume) */
+@media print {
+  body::before {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

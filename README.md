@@ -1,16 +1,50 @@
-# React + Vite
+# Gaurav Kadam — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Full-stack developer portfolio for **Gaurav Kadam** (Mumbai). Dark editorial UI system with real resume, projects, and public repos — no fictional metrics.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Next.js** (App Router) + **TypeScript**
+- **Tailwind CSS** v4
+- **Framer Motion** + **Lenis**
+- **pnpm**
 
-## React Compiler
+## Quick start
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+pnpm install
+pnpm dev
+```
 
-## Expanding the ESLint configuration
+```bash
+pnpm build
+pnpm start
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Content
+
+Persona and copy live under `content/`:
+
+| File | Content |
+|------|---------|
+| `content/site.ts` | Name, role, socials, nav |
+| `content/projects.ts` | Case studies |
+| `content/experience.ts` | Work history |
+| `content/skills.ts` | Skills constellation |
+| `content/about.ts` | About narrative |
+| `content/achievements.ts` | Awards, education, certs |
+| `content/open-source.ts` | Public repos |
+| `info/` | Source resume & notes (not deployed) |
+
+Resume PDF: `public/resume.pdf` (copied from `info/`).
+
+## Env
+
+See `.env.example`:
+
+- `NEXT_PUBLIC_SITE_URL`
+- Optional `RESEND_API_KEY` for contact form email
+
+## Deploy
+
+Vercel (or Netlify) — set `NEXT_PUBLIC_SITE_URL` to your production domain.
