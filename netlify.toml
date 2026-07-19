@@ -1,0 +1,15 @@
+# Next.js on Netlify — do NOT use publish = "dist"
+# Docs: https://docs.netlify.com/frameworks/next-js/overview/
+
+[build]
+  command = "npm run build"
+  # Leave publish unset for the Next.js runtime (App Router / SSR).
+  # The UI "Publish directory: dist" setting must be cleared or it overrides this.
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Use npm so Netlify works without requiring pnpm in the UI
+  # (package-lock is optional; Netlify will npm install from package.json)
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
