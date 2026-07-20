@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { fontDisplay, fontMono, fontSans } from "@/lib/fonts";
 import { siteConfig } from "@/content/site";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -107,6 +108,13 @@ export default function RootLayout({
           </main>
           <SiteFooter />
         </Providers>
+        {/* Cloudflare Web Analytics */}
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          strategy="afterInteractive"
+          type="module"
+          data-cf-beacon='{"token": "8611122f28b64b2fa5d027428294dcbb"}'
+        />
       </body>
     </html>
   );
