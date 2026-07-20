@@ -46,6 +46,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  icons: {
+    icon: [{ url: "/portrait.svg", type: "image/svg+xml" }],
+    shortcut: "/portrait.svg",
+    apple: "/portrait.svg",
+  },
 };
 
 export const viewport: Viewport = {
@@ -53,7 +58,7 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "#050507" },
     { media: "(prefers-color-scheme: light)", color: "#f7f4ee" },
   ],
-  colorScheme: "dark light",
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
 };
@@ -63,9 +68,8 @@ const themeInitScript = `
   try {
     var key = 'obsidian-ledger-theme';
     var stored = localStorage.getItem(key);
-    var theme = stored === 'light' || stored === 'dark'
-      ? stored
-      : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    // Default theme: light (unless user previously chose)
+    var theme = stored === 'light' || stored === 'dark' ? stored : 'light';
     var root = document.documentElement;
     root.classList.toggle('light', theme === 'light');
     root.classList.toggle('dark', theme === 'dark');

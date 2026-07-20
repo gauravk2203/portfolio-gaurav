@@ -1,133 +1,187 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { SocialLinks } from "@/components/shared/social-links";
 import { Container } from "@/components/layout/container";
-import { PortraitFrame } from "@/components/hero/portrait-frame";
 
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
+const PORTRAIT_SRC = "/portrait.svg";
+
+/**
+ * Hero — dark theme + staggered motion.
+ * Portrait: public/portrait.svg — right column frame (no text over image).
+ */
 export function Hero() {
   const reduced = useReducedMotion();
+  const [staggerDelay, setStaggerDelay] = useState(0.1);
 
-  const line = {
-    hidden: reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setStaggerDelay(mq.matches ? 0.06 : 0.1);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const containerVariants: Variants = reduced
+    ? {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0 } },
+      }
+    : {
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: staggerDelay,
+            delayChildren: 0.05,
+          },
+        },
+      };
+
+  const itemVariants: Variants = reduced
+    ? {
+        hidden: { opacity: 1, y: 0 },
+        visible: { opacity: 1, y: 0 },
+      }
+    : {
+        hidden: { opacity: 0, y: 12 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.45, ease: EASE_EXPO },
+        },
+      };
+
+  const portraitVariants: Variants = reduced
+    ? {
+        hidden: { opacity: 1, y: 0, scale: 1 },
+        visible: { opacity: 1, y: 0, scale: 1 },
+      }
+    : {
+        hidden: { opacity: 0, y: 20, scale: 0.98 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: {
+            duration: 0.65,
+            delay: 0.25,
+            ease: EASE_EXPO,
+          },
+        },
+      };
 
   return (
     <section
-      className="relative min-h-[100svh] overflow-hidden pb-16 pt-[calc(var(--header-height)+2rem)] md:pb-24 md:pt-[calc(var(--header-height)+3.5rem)]"
+      className="relative min-h-[100svh] overflow-hidden pb-16 pt-[calc(var(--header-height)+2rem)] md:pb-24 md:pt-[calc(var(--header-height)+3rem)]"
       aria-labelledby="hero-heading"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute -right-24 top-16 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(212,165,116,0.16),transparent_65%)] blur-2xl" />
-        <div className="absolute -left-20 bottom-10 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(122,158,173,0.12),transparent_65%)] blur-2xl" />
-        <div
-          className="absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(244,241,234,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(244,241,234,0.04) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-            maskImage:
-              "radial-gradient(ellipse 70% 60% at 70% 40%, black, transparent)",
-          }}
+      {/* Ambient glows — copper behind copy, soft pool behind portrait */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+        <motion.div
+          className="absolute left-1/2 top-[18%] h-[min(480px,70vw)] w-[min(480px,70vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(212,165,116,0.18),transparent_65%)] blur-[80px] md:left-[22%] md:translate-x-0"
+          animate={
+            reduced
+              ? undefined
+              : { x: [0, 18, -10, 0], y: [0, -14, 10, 0] }
+          }
+          transition={
+            reduced
+              ? undefined
+              : { duration: 19, ease: "easeInOut", repeat: Infinity }
+          }
         />
+        <div className="absolute -right-16 top-1/3 hidden h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(212,165,116,0.12),transparent_70%)] blur-[64px] lg:block" />
+        <div className="absolute -left-20 bottom-10 h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(122,158,173,0.08),transparent_65%)] blur-2xl" />
       </div>
 
-      <Container className="relative grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
-        <motion.div
-          className="lg:col-span-7"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } },
-          }}
-        >
-          <motion.div variants={line} className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border-default bg-surface-1/80 px-3 py-1.5 text-xs text-text-secondary backdrop-blur">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-40" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
-              </span>
-              <span className="sr-only">Availability: </span>
-              {siteConfig.availability.label}
-            </span>
-          </motion.div>
-
-          <motion.p
-            variants={line}
-            className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-accent"
-          >
-            {siteConfig.role} · {siteConfig.location}
-          </motion.p>
-
-          <motion.h1
-            id="hero-heading"
-            variants={line}
-            className="text-display text-[clamp(2.6rem,7vw,5.25rem)] text-text-primary"
-          >
-            <span className="block">Gaurav Kadam</span>
-            <span className="mt-1 block text-gradient">
-              Full-stack products, clear UI.
-            </span>
-          </motion.h1>
-
-          <motion.p
-            variants={line}
-            className="mt-6 max-w-xl text-base text-text-secondary md:text-lg"
-          >
-            I build React and TypeScript interfaces, wire them to real APIs, and
-            ship full-stack apps — from manufacturing dashboards to AI-assisted
-            habit tools.
-          </motion.p>
-
+      <Container className="relative z-[1]">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+          {/* Copy column */}
           <motion.div
-            variants={line}
-            className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+            className="max-w-2xl lg:col-span-7"
+            variants={containerVariants}
+            initial={reduced ? "visible" : "hidden"}
+            animate="visible"
           >
-            <Button asChild size="lg">
-              <Link href="/#work">
-                View selected work
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/contact">Get in touch</Link>
-            </Button>
+            <motion.p
+              variants={itemVariants}
+              className="mb-5 text-xs font-medium uppercase tracking-[0.2em] text-accent"
+            >
+              {siteConfig.role} · {siteConfig.location}
+            </motion.p>
+
+            <motion.h1
+              id="hero-heading"
+              variants={itemVariants}
+              className="text-display text-[clamp(2.35rem,5.5vw,4.5rem)] leading-[1.05] text-text-primary"
+            >
+              <span className="block">Engineer who designs.</span>
+              <span className="mt-1 block text-gradient">
+                Designer who ships.
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="mt-6 max-w-[480px] text-base leading-relaxed text-text-secondary md:text-lg"
+            >
+              I build React and TypeScript interfaces, wire them to real APIs,
+              and ship full-stack apps — treating design as a skill, not a
+              checkbox.
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+            >
+              <Button asChild size="lg" className="group">
+                <Link href="/#work">
+                  View selected work
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/contact">Get in touch</Link>
+              </Button>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-10">
+              <SocialLinks />
+            </motion.div>
           </motion.div>
 
-          <motion.div variants={line} className="mt-10">
-            <SocialLinks />
+          {/*
+            Portrait plate is theme-aware:
+            - Dark: warm paper fill so light SVG doesn’t float on void
+            - Light: transparent + border only (paper plate would collide)
+          */}
+          <motion.div
+            className="relative mx-auto w-full max-w-sm lg:col-span-5 lg:mx-0 lg:max-w-none"
+            variants={portraitVariants}
+            initial={reduced ? "visible" : "hidden"}
+            animate="visible"
+          >
+            <div className="hero-portrait-plate relative aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-xl)] border">
+              <Image
+                src={PORTRAIT_SRC}
+                alt={`${siteConfig.name}, ${siteConfig.role}`}
+                fill
+                priority
+                unoptimized
+                className="object-contain object-center"
+                sizes="(max-width: 1024px) 90vw, 420px"
+              />
+            </div>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          className="relative lg:col-span-5"
-          initial={reduced ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <PortraitFrame />
-        </motion.div>
+        </div>
       </Container>
-
-      <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 md:block">
-        <a
-          href="#work"
-          className="group flex flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.2em] text-text-muted transition-colors hover:text-accent"
-        >
-          Scroll
-          <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
-        </a>
-      </div>
     </section>
   );
 }

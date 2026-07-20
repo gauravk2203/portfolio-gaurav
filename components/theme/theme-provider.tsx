@@ -30,20 +30,14 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+  const [theme, setThemeState] = useState<Theme>("light");
   const [resolved, setResolved] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const prefersLight = window.matchMedia(
-      "(prefers-color-scheme: light)",
-    ).matches;
+    // Default: light. Only use stored preference when user has chosen before.
     const initial: Theme =
-      stored === "light" || stored === "dark"
-        ? stored
-        : prefersLight
-          ? "light"
-          : "dark";
+      stored === "light" || stored === "dark" ? stored : "light";
     setThemeState(initial);
     applyTheme(initial);
     document.documentElement.classList.add("theme-ready");

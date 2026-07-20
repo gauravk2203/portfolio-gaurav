@@ -1,10 +1,27 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
+import { siteConfig } from "@/content/site";
+
+/**
+ * Add your photo here when ready:
+ *   public/portrait.jpg
+ *
+ * Until it loads successfully, only the copper gradient placeholder is shown.
+ */
+const PORTRAIT_SRC = "/portrait.png";
 
 export function PortraitFrame() {
   const ref = useRef<HTMLDivElement>(null);
+  /** false until image loads — avoids monogram/broken image flash */
+  const [imageReady, setImageReady] = useState(false);
   const reduced = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -46,6 +63,7 @@ export function PortraitFrame() {
         style={reduced ? undefined : { x: springX, y: springY }}
         className="relative h-full overflow-hidden rounded-[var(--radius-xl)] border border-border-default bg-surface-1 shadow-[var(--shadow-lg)]"
       >
+        {/* Always-on gradient placeholder (old style) */}
         <div
           className="absolute inset-0"
           style={{
@@ -53,14 +71,35 @@ export function PortraitFrame() {
               "radial-gradient(ellipse 80% 70% at 50% 35%, rgba(212,165,116,0.22), transparent 55%), linear-gradient(160deg, #14161c 0%, #0a0b0e 55%, #121820 100%)",
           }}
           role="img"
-          aria-label="Abstract portrait placeholder for Gaurav Kadam"
+          aria-label={
+            imageReady
+              ? undefined
+              : `Abstract portrait placeholder for ${siteConfig.name}`
+          }
         />
+
+        {/* Hidden until load succeeds — no monogram fallback */}
+        <Image
+          src={PORTRAIT_SRC}
+          alt={`${siteConfig.name}, ${siteConfig.role}`}
+          fill
+          className={
+            imageReady
+              ? "object-cover object-[center_20%] opacity-100"
+              : "opacity-0"
+          }
+          sizes="(max-width: 768px) 90vw, 400px"
+          priority
+          onLoad={() => setImageReady(true)}
+          onError={() => setImageReady(false)}
+        />
+
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void via-void/70 to-transparent p-6 pt-24">
           <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-accent">
             Portfolio
           </p>
-          <p className="mt-1 text-lg text-text-primary">Gaurav Kadam</p>
-          <p className="text-sm text-text-secondary">Full-Stack Developer</p>
+          <p className="mt-1 text-lg text-text-primary">{siteConfig.name}</p>
+          <p className="text-sm text-text-secondary">{siteConfig.role}</p>
         </div>
 
         <div
