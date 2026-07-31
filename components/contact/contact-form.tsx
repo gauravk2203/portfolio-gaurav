@@ -15,11 +15,13 @@ type FieldErrors = Partial<
 export function ContactForm() {
   const [pending, startTransition] = useTransition();
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [formError, setFormError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrors({});
+    setFormError(null);
     setSuccess(false);
 
     const form = e.currentTarget;
@@ -56,7 +58,9 @@ export function ContactForm() {
         setSuccess(true);
         form.reset();
       } else {
-        setErrors({ message: result.error ?? "Something went wrong." });
+        setFormError(
+          result.error ?? "Something went wrong. Please try email instead.",
+        );
       }
     });
   }
@@ -148,6 +152,15 @@ export function ContactForm() {
           aria-describedby={errors.message ? "message-error" : undefined}
         />
       </Field>
+
+      {formError ? (
+        <p
+          className="rounded-[var(--radius-md)] border border-danger/30 bg-danger/10 px-3 py-2 text-sm text-danger"
+          role="alert"
+        >
+          {formError}
+        </p>
+      ) : null}
 
       <Button type="submit" size="lg" disabled={pending} className="w-full sm:w-auto">
         {pending ? (

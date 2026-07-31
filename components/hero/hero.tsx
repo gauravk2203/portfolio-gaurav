@@ -11,11 +11,11 @@ import { SocialLinks } from "@/components/shared/social-links";
 import { Container } from "@/components/layout/container";
 
 const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
-const PORTRAIT_SRC = "/portrait.svg";
+const PORTRAIT_SRC = "/portrait.webp";
 
 /**
  * Hero — dark theme + staggered motion.
- * Portrait: public/portrait.svg — right column frame (no text over image).
+ * Portrait: public/portrait.webp — right column frame (no text over image).
  */
 export function Hero() {
   const reduced = useReducedMotion();

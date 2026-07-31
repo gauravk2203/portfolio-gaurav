@@ -25,68 +25,65 @@ export async function submitContact(
     return { ok: false, error: "Invalid email address." };
   }
 
-  const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL ?? siteConfig.email;
+  if (message.length < 12) {
+    return { ok: false, error: "Please share a bit more detail in your message." };
+  }
+
+  const resendKey = process.env.RESEND_API_KEY?.trim();
+  const to = process.env.CONTACT_TO_EMAIL?.trim() || siteConfig.email;
   const from =
-    process.env.CONTACT_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>";
+    process.env.CONTACT_FROM_EMAIL?.trim() ||
+    "Portfolio <onboarding@resend.dev>";
 
-  if (resendKey) {
-    try {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${resendKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from,
-          to: [to],
-          reply_to: email,
-          subject: `Portfolio inquiry from ${name}`,
-          text: [
-            `Name: ${name}`,
-            `Email: ${email}`,
-            payload.company ? `Company: ${payload.company}` : null,
-            payload.budget ? `Budget: ${payload.budget}` : null,
-            "",
-            message,
-          ]
-            .filter(Boolean)
-            .join("\n"),
-        }),
-      });
+  // Production: require Resend — never fake success without delivery
+  if (!resendKey) {
+    console.error("[contact] RESEND_API_KEY is not set");
+    return {
+      ok: false,
+      error: `Message service is not configured. Please email me at ${siteConfig.email}.`,
+    };
+  }
 
-      if (!res.ok) {
-        const body = await res.text();
-        console.error("[contact] Resend error", res.status, body);
-        return {
-          ok: false,
-          error: "Could not send message. Please email me directly.",
-        };
-      }
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        reply_to: email,
+        subject: `Portfolio inquiry from ${name}`,
+        text: [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          payload.company?.trim() ? `Company: ${payload.company.trim()}` : null,
+          payload.budget?.trim() ? `Budget: ${payload.budget.trim()}` : null,
+          "",
+          message,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      }),
+    });
 
-      return { ok: true };
-    } catch (err) {
-      console.error("[contact] Resend exception", err);
+    if (!res.ok) {
+      const body = await res.text();
+      console.error("[contact] Resend error", res.status, body);
       return {
         ok: false,
-        error: "Could not send message. Please email me directly.",
+        error: `Could not send message. Please email me at ${siteConfig.email}.`,
       };
     }
+
+    return { ok: true };
+  } catch (err) {
+    console.error("[contact] Resend exception", err);
+    return {
+      ok: false,
+      error: `Could not send message. Please email me at ${siteConfig.email}.`,
+    };
   }
-
-  // Demo / local: accept after validation
-  await new Promise((r) => setTimeout(r, 500));
-
-  if (process.env.NODE_ENV === "development") {
-    console.info("[contact] (no RESEND_API_KEY — simulated)", {
-      name,
-      email,
-      company: payload.company,
-      budget: payload.budget,
-      message: message.slice(0, 120),
-    });
-  }
-
-  return { ok: true };
 }

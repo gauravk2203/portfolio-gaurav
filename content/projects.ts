@@ -324,27 +324,27 @@ PostgreSQL (Neon)`,
     visuals: [
       {
         label: "Dashboard overview",
-        src: "/Job_Tracker/Dashboard.png",
+        src: "/Job_Tracker/Dashboard.webp",
         alt: "Job Tracker dashboard showing application stats, pipeline, and recent activity",
       },
       {
         label: "Kanban board",
-        src: "/Job_Tracker/kanban.png",
+        src: "/Job_Tracker/kanban.webp",
         alt: "Job Tracker kanban board of applications by status",
       },
       {
         label: "Analytics",
-        src: "/Job_Tracker/analytics.png",
+        src: "/Job_Tracker/analytics.webp",
         alt: "Job Tracker analytics charts and job search trends",
       },
       {
         label: "AI email generator",
-        src: "/Job_Tracker/email_generator.png",
+        src: "/Job_Tracker/email_generator.webp",
         alt: "Job Tracker AI-assisted recruiter email generator",
       },
       {
         label: "System architecture",
-        src: "/Job_Tracker/System_architecture.png",
+        src: "/Job_Tracker/System_architecture.webp",
         alt: "Job Tracker system architecture diagram",
       },
     ],

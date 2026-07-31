@@ -119,19 +119,24 @@ Linked from the resume and contact sections.
 
 ## Environment variables
 
-Copy `.env.example` if present, or create `.env.local`:
+Copy `.env.example` to `.env.local` for local dev. On Netlify: **Site configuration → Environment variables**.
 
 ```bash
-# Production site URL (SEO, sitemap, canonicals)
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
-
-# Optional: contact form email via Resend
-RESEND_API_KEY=
+RESEND_API_KEY=re_xxxxxxxx
 CONTACT_TO_EMAIL=g.kadam.dev@gmail.com
 CONTACT_FROM_EMAIL=Portfolio <onboarding@resend.dev>
 ```
 
-Without `RESEND_API_KEY`, the contact form validates and succeeds in demo mode (logged in development).
+| Variable | Purpose |
+|----------|---------|
+| `RESEND_API_KEY` | **Required** for the contact form to deliver mail |
+| `CONTACT_TO_EMAIL` | Inbox for inquiries (default: site email) |
+| `CONTACT_FROM_EMAIL` | Sender — use Resend test sender or a **verified domain** |
+
+Without `RESEND_API_KEY`, the form shows an error (it will not fake success).
+
+**Resend tips:** With `onboarding@resend.dev` you can only send to the email on your Resend account. For production, verify your domain and set `CONTACT_FROM_EMAIL` to that domain.
 
 ---
 
