@@ -11,7 +11,7 @@ import { SocialLinks } from "@/components/shared/social-links";
 import { Container } from "@/components/layout/container";
 
 const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
-const PORTRAIT_SRC = "/portrait.svg";
+const PORTRAIT_SRC = "/low_portrait.svg";
 
 /**
  * Hero — dark theme + staggered motion.
