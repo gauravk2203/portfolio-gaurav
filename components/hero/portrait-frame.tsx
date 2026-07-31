@@ -16,7 +16,7 @@ import { siteConfig } from "@/content/site";
  *
  * Until it loads successfully, only the copper gradient placeholder is shown.
  */
-const PORTRAIT_SRC = "/portrait.png";
+const PORTRAIT_SRC = "/portrait.svg";
 
 export function PortraitFrame() {
   const ref = useRef<HTMLDivElement>(null);

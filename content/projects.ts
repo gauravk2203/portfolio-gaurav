@@ -320,7 +320,7 @@ PostgreSQL (Neon)`,
     ],
     statusNote:
       "Job Tracker is actively used as my personal job search management platform and continues to evolve as I identify new workflows and automation opportunities. Features are driven by real-world usage rather than hypothetical requirements.",
-    coverImage: "/Job_Tracker/Dashboard.png",
+    coverImage: "/Job_Tracker/Dashboard.webp",
     visuals: [
       {
         label: "Dashboard overview",
