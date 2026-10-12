@@ -27,7 +27,7 @@ export default function ResumePage() {
           </Button>
           <p className="w-full text-xs text-text-muted">
             PDF is served from{" "}
-            <code className="text-secondary">public/resume.pdf</code> when
+            <code className="text-secondary">public/Gaurav_Kadam_Full_Stack_Developer.pdf</code> when
             present. You can also use the browser print dialog on this page.
           </p>
         </div>
