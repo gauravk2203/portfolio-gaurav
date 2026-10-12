@@ -20,7 +20,7 @@ export default function ResumePage() {
       <Container narrow>
         <div className="no-print mb-8 flex flex-wrap gap-3">
           <Button asChild variant="outline" size="sm">
-            <a href="/resume.pdf" download>
+            <a href="Gaurav_Kadam_Full_Stack_Developer.pdf" download>
               <Download className="h-4 w-4" />
               Download PDF
             </a>
